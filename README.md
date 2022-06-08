@@ -34,6 +34,50 @@ npx svelte-add@latest tailwindcss
 npm i -D env-cmd daisyui @tailwindcss/typography
 ```
 
+## Adding Prisma
+
+```bash
+# initialite prima
+npx prisma init --datasource-provider sqlite
+```
+
+To format on save using Prettier and this rule to your settings.json
+
+```bash
+# Add this json to your settings.json in VSCode
+"[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+}
+
+# Edit your .env file
+DATABASE_URL="file:./dev.db"
+```
+
+Create a schema for your project and install the prisma client
+
+```bash
+# Install the Prisma client which generates the client and types
+npm i @prisma/client
+
+# Create the prisma database
+npx prisma db push
+```
+
+Please note: Use `migrate dev` instead of `db push` in real projects to create a history of your database when you make changes to the db
+
+Seeding the database with test data
+
+```bash
+# To transpile TypeScript you ts-node and Node.js types
+npm i -D ts-node @types/node
+
+# Seeding the db
+npx prisma db seed
+
+# Seeing the data in the browser
+npx prisma studio
+```
+
 ## Developing
 
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
@@ -62,3 +106,4 @@ You can preview the production build with `npm run preview`.
 Install VSCODE Plugins
 
 - Conventional Commits
+- Prisma
