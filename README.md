@@ -80,6 +80,34 @@ npx prisma studio
 
 ## Developing
 
+If you prefer to use $root as an alias to access the `src` folder from anywhere in the project edit the `svelte-config.js` ...
+
+```bash
++ import path from 'path'
+...
+kit: {
++	adapter: adapter(),
++   vite: {
++ 	    resolve: {
++ 		    alias: {
++ 			    $root: path.resolve('./src')
++ 		    }
++ 	    }
++   }
+```
+
+... and update the `tsconfig.json` so TypeScript knows where the files are located.
+
+```bash
+"compilerOptions": {
+    ...
++   "baseUrl": ".",
++		"paths": {
++			"$root/*": ["./src/*"]
++	    }
+}
+```
+
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
 ```bash

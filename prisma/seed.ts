@@ -1,10 +1,10 @@
-import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
 // use `prisma` in your application to read and write data in your DB
 
 export function randomUrl(): string {
-	return Math.random().toString(16).slice(2);
+	return Math.random().toString(16).slice(2)
 }
 
 // gets random time starting from now and
@@ -12,13 +12,13 @@ export function randomUrl(): string {
 // database in the future
 export function randomDate(): string {
 	// this is set to one day
-	const offset = 24 * 60 * 60 * 1000 * 1;
+	const offset = 24 * 60 * 60 * 1000 * 1
 
-	const current = new Date().getTime();
-	const random = Math.random() * offset;
-	const difference = new Date(current - random);
+	const current = new Date().getTime()
+	const random = Math.random() * offset
+	const difference = new Date(current - random)
 
-	return difference.toISOString();
+	return difference.toISOString()
 }
 
 function getUsers() {
@@ -81,7 +81,8 @@ function getUsers() {
 					{
 						url: randomUrl(),
 						posted: randomDate(),
-						content: 'Painting is as individual as people are. 👩‍🎨',
+						content:
+							'Painting is as individual as people are. 👩‍🎨',
 						likes: 0
 					},
 					{
@@ -94,15 +95,15 @@ function getUsers() {
 				]
 			}
 		}
-	];
+	]
 }
 
 async function seed() {
-	const users = getUsers();
+	const users = getUsers()
 
 	for (const user of users) {
-		await prisma.user.create({ data: user });
+		await prisma.user.create({ data: user })
 	}
 }
 
-seed();
+seed()
